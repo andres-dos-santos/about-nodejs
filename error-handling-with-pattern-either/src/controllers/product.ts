@@ -8,8 +8,12 @@ export class ProductController {
 
     const createProductUseCase = new CreateProductUseCase();
 
-    const result = await createProductUseCase.handle(body);
+    try {
+      const result = await createProductUseCase.handle(body);
 
-    return response.json(result);
+      return response.json(result);
+    } catch (error: any) {
+      return response.status(400).json(error.message);
+    }
   }
 }

@@ -13,6 +13,10 @@ interface ProductResponse extends ProductRequest {
 
 export class CreateProductUseCase {
   async handle(data: ProductRequest): Promise<ProductResponse> {
+    if (!data.barCode) {
+      throw new Error("Code not found!");
+    }
+
     return {
       ...data,
       id: randomUUID(),
