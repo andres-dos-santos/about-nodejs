@@ -34,3 +34,11 @@ export class Right<L, R> {
     return true;
   }
 }
+
+export function left<L, R>(l: L): Either<L, R> {
+  return new Left(l);
+}
+
+export function right<L, R>(r: R): Either<L, R> {
+  return new Right(r);
+}
