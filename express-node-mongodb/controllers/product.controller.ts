@@ -2,7 +2,7 @@ import express from 'express'
 
 import { Product } from '../models/product.model'
 
-async function getProducts(req: express.Request, res: express.Response) {
+async function getProducts(_: express.Request, res: express.Response) {
   try {
     const products = await Product.find()
 
@@ -32,7 +32,7 @@ async function createProduct(req: express.Request, res: express.Response) {
 
     res.status(201).json(product)
   } catch (error) {
-    res.status(500).json({ message: (error as { message?: string })?.message })
+    console.log(error)
   }
 }
 
