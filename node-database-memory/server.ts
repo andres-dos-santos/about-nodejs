@@ -1,48 +1,50 @@
 import fastify from "fastify";
 
 import {
-  DatabaseMemory,
+  // DatabaseMemory,
   type Param,
   type Query,
   type Video,
 } from "./database-memory";
+import { DatabasePostgres } from "./database-postgres";
 
 const server = fastify();
 
-const database = new DatabaseMemory();
+// const database = new DatabaseMemory();
+const database = new DatabasePostgres();
 
-server.get("/videos", (req, rep) => {
+server.get("/videos", async (req, rep) => {
   const { search } = req.query as Query;
 
-  const videos = database.list(search);
+  const videos = await database.list(search);
 
   return videos;
 });
 
-server.post("/videos", (req, rep) => {
+server.post("/videos", async (req, rep) => {
   const body = req.body as Video;
 
-  database.create(body);
+  await database.create(body);
 
   return rep.status(201).send();
 });
 
-server.put("/videos/:id", (req, rep) => {
+server.put("/videos/:id", async (req, rep) => {
   const { id: videoId } = req.params as Param;
 
   const body = req.body as Video;
 
-  database.update(videoId, body);
+  await database.update(videoId, body);
 
   return rep.status(204).send();
 });
 
-server.delete("/videos/:id", (req, rep) => {
+server.delete("/videos/:id", async (req, rep) => {
   const { id: videoId } = req.params as Param;
 
-  database.delete(videoId);
+  await database.delete(videoId);
 
   return rep.status(204).send();
 });
 
-server.listen({ port: 3333 });
+server.listen({ port: Number(process.env.PORT) ?? 3333 });

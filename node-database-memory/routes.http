@@ -2,12 +2,14 @@ POST http://localhost:3333/videos
 Content-Type: application/json
 
 {
-  "title": "react"
+  "title": "react",
+  "description": "react is most popular web framework",
+  "duration": 2000
 }
 
 ###
 
-GET http://localhost:3333/videos?search=node
+GET http://localhost:3333/videos?search=react
 Content-Type: application/json
 
 ###

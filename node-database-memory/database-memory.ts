@@ -10,7 +10,8 @@ export interface Query {
 
 export interface Video {
   title: string;
-  id: string;
+  description: string;
+  duration: number;
 }
 
 export class DatabaseMemory {
