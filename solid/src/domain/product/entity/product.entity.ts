@@ -37,4 +37,12 @@ export class Product {
   public get quantity() {
     return this.props.quantity
   }
+
+  public increaseQuantity(quantity: number) {
+    this.props.quantity += quantity
+  }
+
+  public decreaseQuantity(quantity: number) {
+    this.props.quantity -= quantity
+  }
 }
