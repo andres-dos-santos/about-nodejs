@@ -4,12 +4,16 @@
   "type": "module",
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "prisma": "^5.14.0"
   },
   "scripts": {
     "dev": "bun --watch --no-warning src/main.ts"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.14.0"
   }
 }
